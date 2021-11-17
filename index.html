@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{margin: 0;padding: 0;}
+			#main{
+				width: 680px;
+				height: 300px;
+				border: 1px #000000 solid;
+				margin: 50px auto;
+				padding: 0 30px;
+			}
+			h3{
+				height: 60px;
+					line-height: 60px;
+					text-align: center;
+			}
+			#red{float: left;}
+			#blue{float: right;}
+			p{margin-bottom: 20px;}
+			#red strong{color: red;}
+			#blue strong{color: blue;}
+			span{
+				display: inline-block;
+				width: 30px;height: 30px;
+				border-radius: 50%;
+				border: 1px #000000 solid;
+				background: #fbfbfb;
+				margin-right: 5px;
+				margin-bottom: 20px;
+				line-height: 30px;
+				text-align: center;
+				font-size: 12px;
+				font-weight: bold;
+			}
+			input{padding: 6px;margin-right: 20px;}
+			.red{background: red;color: #FFF;}
+			.blue{background: blue;color: #FFF;}
+			.clear{background: #fbfbfb;color: #000;}
+		</style>
+	</head>
+	<body>
+		<div id="main">
+			<h3>福利彩票“双色球“随机选号</h3>
+		<div id="red">
+		<p><strong>红球</strong>选择6个</p>
+		<div>
+			<span>01</span><span>02</span><span>03</span><span>04</span><span>05</span><span>06</span><span>07</span><span>08</span><span>09</span><span>10</span><span>11</span><br/>
+			<span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span><br/>
+			<span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>29</span><span>30</span><span>31</span><span>32</span><span>33</span>
+		</div>
+		<div>
+			<input type="button" id="autoRed" value="机选红球" /><input type="button" id="clearR" value="清空" />
+		</div>
+		</div>
+		<div id="blue">
+		<p><strong>蓝球</strong>选择1个</p>
+		<div>
+			<span>01</span><span>02</span><span>03</span><span>04</span><span>05</span><span>06</span><br />
+			<span>07</span><span>08</span><span>09</span><span>10</span><span>11</span><span>12</span><br />
+			<span>13</span><span>14</span><span>15</span><span>16</span>
+		</div>
+		<div>
+			<input type="button" id="autoBlue" value="机选蓝球" /><input type="button" id="clearB" value="清空" />
+		</div>
+		</div>
+		</div>
+	</body>
+</html>
+<script>
+var oRed=document.getElementById("red");
+var oRedSpan=oRed.getElementsByTagName("span");
+var oBlue=document.getElementById("blue");
+var oBlueSpan=oBlue.getElementsByTagName("span");
+var oAutoRed=document.getElementById("autoRed");
+var oAutoBlue=document.getElementById("autoBlue");
+var oclearR=document.getElementById("clearR");
+var oclearB=document.getElementById("clearB");
+var span=[];
+function set(){
+	for(var i=0;i<6;i++){
+		span[i]=Math.ceil(Math.random()*33);
+	}
+	for(var i=0;i<5;i++){
+		for(var j=i+1;j<6;j++){
+			if(span[i]==span[j]){
+				set();
+			}
+		}
+	}
+}
+oAutoRed.onclick=function(){
+	for(var i=0;i<oRedSpan.length;i++){
+		oRedSpan[i].className="clear";
+	}
+	set();
+	oRedSpan[span[0]-1].className="red";
+	oRedSpan[span[1]-1].className="red";
+	oRedSpan[span[2]-1].className="red";
+	oRedSpan[span[3]-1].className="red";
+	oRedSpan[span[4]-1].className="red";
+	oRedSpan[span[5]-1].className="red";
+}
+oclearR.onclick=function(){
+	for(var i=0;i<oRedSpan.length;i++){
+		oRedSpan[i].className="clear"
+	}
+}
+oAutoBlue.onclick=function(){
+	for(var i=0;i<oBlueSpan.length;i++){
+		oBlueSpan[i].className="clear";
+	}
+	var span1=Math.ceil(Math.random()*16);
+	oBlueSpan[span1-1].className="blue";
+}
+oclearB.onclick=function(){
+	for(var i=0;i<oBlueSpan;i++){
+		oBlueSpan[i].className="clear";
+	}
+}
+
+</script>
